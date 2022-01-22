@@ -1,0 +1,30 @@
+body {
+	margin: 0;	/*full screen*/
+}
+#container {
+	display: flex;
+	flex-flow: row nowrap;
+
+	width: 100%;	/*temp*/
+	aspect-ratio: 16/9;	/*tv aspect ratio*/
+}
+#map {
+	height: 100%;	/*only way to make aspect ratio work*/
+}
+#map img {
+	height: 100%;
+	aspect-ratio: 6/5;	/*this could change*/
+}
+#secondary {
+	flex-grow: 1;	/*for #container (parent)*/
+
+	display: flex;
+	flex-flow: column nowrap;
+}
+#park {
+	flex-grow: 1;	/*this can grow (if different ratio for #map img)*/
+	min-height: 0;	/*this can shrink*/
+}
+#hologram {
+	aspect-ratio: 1/1;	/*temp: not mandatory*/
+}
