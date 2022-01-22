@@ -33,30 +33,34 @@
 
 		<style>
 			body {
-				margin: 0;
+				margin: 0;	/*full screen*/
 			}
 			#container {
 				display: flex;
-				flex-flow: column wrap;
+				flex-flow: row nowrap;
 
-				width: 50%;
-				aspect-ratio: 16/9;
-
-				background-color: red;
+				width: 70%;	/*temp*/
+				aspect-ratio: 16/9;	/*tv aspect ratio*/
 			}
 			#map {
-				height: 100%;
+				height: 100%;	/*only way to make aspect ratio work*/
 			}
 			#map img {
 				height: 100%;
-				aspect-ratio: 1/1;
+				aspect-ratio: 5/4;	/*this could change*/
+			}
+			#secondary {
+				flex-grow: 1;	/*for #container (parent)*/
+
+				display: flex;
+				flex-flow: column nowrap;
 			}
 			#park {
-				flex-shrink: 1;
+				flex-grow: 1;	/*this can grow (if different ratio for #map img)*/
+				min-height: 0;	/*this can shrink*/
 			}
-			#hologram img {
-				height: 100%;
-				aspect-ratio: 1/1;
+			#hologram {
+				aspect-ratio: 1/1;	/*temp: not mandatory*/
 			}
 		</style>
 	</head>
@@ -66,13 +70,10 @@
 			<div id="map">
 				<img src="<?=ROOT?>/img/map.png" alt="Mappa del museo" draggable="false" />
 			</div>
-			<div id="park">
-				<img src="<?=ROOT?>/img/park.png" alt="Parcheggio del Nao" draggable="false" />
+			<div id="secondary">
+				<img id="park"src="<?=ROOT?>/img/park.png" alt="Parcheggio del Nao" draggable="false" />
+				<img id="hologram" src="<?=ROOT?>/img/hologram.png" alt="Ologramma" draggable="false" />
 			</div>
-			<div id="hologram">
-				<img src="<?=ROOT?>/img/hologram.png" alt="Ologramma" draggable="false" />
-		</div>
-		dfd
 		</div>
 	</body>
 </html>
