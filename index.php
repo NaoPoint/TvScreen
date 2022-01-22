@@ -11,7 +11,7 @@
 		<meta name="copyright" content="Apache 2.0 &copy; 2022">
 		<meta name="creator" content="Pellegatta Simone, Andreotti Riccardo">
 		<meta name="reply-to" content="naochallenge2022@gmail.com">
-		<meta name="theme-color" content="#348CC5">
+		<meta name="theme-color" content="#348cc5">
 
 		<!--Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" type="text/css" media="all">
@@ -29,7 +29,7 @@
 		<link rel="manifest" href="<?=ROOT?>/manifest.webmanifest">
 
 		<!--Preload-->
-		<link rel="preload" as="image" imagesrcset=" 392w,  722w" imagesizes="(min-width: 61.25em) 722px, 392px">
+		<!--link rel="preload" as="image" imagesrcset=" 392w,  722w" imagesizes="(min-width: 61.25em) 722px, 392px"-->
 
 		<style>
 			body {
