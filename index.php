@@ -39,7 +39,7 @@
 				display: flex;
 				flex-flow: row nowrap;
 
-				width: 70%;	/*temp*/
+				width: 100%;	/*temp*/
 				aspect-ratio: 16/9;	/*tv aspect ratio*/
 			}
 			#map {
@@ -47,7 +47,7 @@
 			}
 			#map img {
 				height: 100%;
-				aspect-ratio: 5/4;	/*this could change*/
+				aspect-ratio: 6/5;	/*this could change*/
 			}
 			#secondary {
 				flex-grow: 1;	/*for #container (parent)*/
