@@ -9,7 +9,7 @@
 		<meta name="author" content="Bachi Informati, naochallenge2022@gmail.com">
 		<meta name="color-scheme" content="only light">
 		<meta name="copyright" content="Apache 2.0 &copy; 2022">
-		<meta name="creator" content="Pellegatta Simone, Andreotti Riccardo">
+		<meta name="creator" content="Pellegatta Simone, Andreotti Riccardo, Jacopo Nava, Michela Acciaretti, Matteo Maino, Ivan Conte, Pietro Panzeri">
 		<meta name="reply-to" content="naochallenge2022@gmail.com">
 		<meta name="theme-color" content="#348cc5">
 
