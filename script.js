@@ -1,4 +1,4 @@
-//single point on the map
+//single point on the map:
 class Point {
     constructor(horizontal, vertical) {	//percentage coordinates
         this.horizontal = horizontal;
@@ -6,10 +6,7 @@ class Point {
     }
 }
 
-console.log(document.body.clientWidth);
-console.log(document.body.clientHeight);
-
-//map points
+//map points:
 let points = [];	//array containing all the points
 
 points.push(new Point(16.1,54.8));	//naopoint
@@ -21,12 +18,12 @@ points.push(new Point(78,73.6));	//5
 
 //point marker:
 for (const point of points) {
-	console.log(point);
-	let circle = document.createElement("span");
-	circle.classList.add("circle");
+	let marker = document.createElement("span");	//virtual element
+	marker.classList.add("marker");	//for css
 
-	circle.style.left = point.horizontal + "%";
-	circle.style.top = point.vertical + "vh";
+	//set marker position (already absolute)
+	marker.style.left = point.horizontal + "%";
+	marker.style.top = point.vertical + "%";
 
-	document.body.appendChild(circle);
+	document.body.appendChild(marker);	//assign virtual element to body
 }

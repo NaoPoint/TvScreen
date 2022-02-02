@@ -1,3 +1,6 @@
+:root {
+	font-size: max(1vw, 1vh);
+}
 body {
 	margin: 0;	/*full screen*/
 
@@ -12,14 +15,13 @@ body {
 	width: 100%;	/*only way to make aspect ratio work*/
 	height: 100%;
 }
-.circle {
-	position: absolute;
-	display: inline-block;
+.marker {
+	position: absolute;	/*positioned in javascript*/
 
-	background-color: black;
+	background-color: yellow;
 	
-	width: 3rem;
+	width: 3rem;	/*constant and based on root element*/
 	height: 3rem;
 
-	border-radius: 50%;
+	border-radius: 50%;	/*make span circlular*/
 }

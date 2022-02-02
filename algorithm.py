@@ -2,11 +2,11 @@
 import math
 
 #costruzione del grafo
-grafo = {}                      #creo un dizionario "grafo" in cui inserisco tutti i punti del grafo
-grafo["inizio"] = {}            #definisco una corrispondenza interna al nodo
+grafo = {}	#creo un dizionario "grafo" in cui inserisco tutti i punti del grafo
+grafo["inizio"] = {}	#definisco una corrispondenza interna al nodo
 grafo["inizio"]["1"] = 4
-grafo["inizio"]["2"] = 4        #ad ogni valore del grafo assegno una lista, che sarebbe il collegamento con un altro grafo,
-grafo["inizio"]["3"] = 3        #a cui poi dò un valore (il costo del collegamento)
+grafo["inizio"]["2"] = 4	#ad ogni valore del grafo assegno una lista, che sarebbe il collegamento con un altro grafo,
+grafo["inizio"]["3"] = 3	#a cui poi dò un valore (il costo del collegamento)
 grafo["inizio"]["7"] = 3
 grafo["inizio"]["8"] = 3
 
@@ -52,7 +52,7 @@ costo_nodi = {}
 costo_nodi["1"] = 4
 costo_nodi["2"] = 4
 costo_nodi["3"] = 3
-costo_nodi["4"] = math.inf     #math.inf indica un valore infinito che non può essere superato da nessun altro collegamento
+costo_nodi["4"] = math.inf	 #math.inf indica un valore infinito che non può essere superato da nessun altro collegamento
 costo_nodi["5"] = math.inf
 costo_nodi["6"] = math.inf
 costo_nodi["7"] = 3
@@ -72,34 +72,32 @@ parents["6"] = None
 parents["7"] = "inizio"
 parents["8"] = "inizio"
 
-
 #funzione per trovare il nodo con costo minore che esamina il dizionario costo_nodi
 def nodo_con_costo_minore(costo_nodi):
-    costo_minimo = math.inf
-    nodo_con_costo_minimo = None
+	costo_minimo = math.inf
+	nodo_con_costo_minimo = None
 
-    for n in costo_nodi:                #n sono i nodi
-        costo_nodo = costo_nodi[n]
-        if(costo_nodo < costo_minimo) and (n not in processati):    #confronta il nodo con costo minore che non sia nella lista dei processati
-            costo_minimo = costo_nodo
-            nodo_con_costo_minimo = n
+	for nodo in costo_nodi:	#nodo sono le chiavi del costo nodi
+		costo_nodo = costo_nodi[nodo]	#estrazione del costo dalla chiave
+		if(costo_nodo < costo_minimo) and (nodo not in processati):	#confronta il nodo con costo minore che non sia nella lista dei processati
+			costo_minimo = costo_nodo
+			nodo_con_costo_minimo = nodo
 
-    return nodo_con_costo_minimo
+	return nodo_con_costo_minimo
 
 
 #algoritmo
 nodo = nodo_con_costo_minore(costo_nodi)
-while nodo is not None:                         #finchè ho nodi da elaborare
-    costo_nodo = costo_nodi[nodo]               #costo del nodo corrente
-    vicini = grafo[nodo]                        #vicini sono i nodi collegati al nodo corrente
-    for n in vicini.keys():                     #keys() restituisce le chiavi come elenco
-        nuovo_costo_nodo = costo_nodo + vicini[n]
-        if costo_nodi[n] > nuovo_costo_nodo:
-            costo_nodi[n] = nuovo_costo_nodo
-            parents[n] = nodo
+while nodo is not None:	#finchè ho nodi da elaborare
+	costo_nodo = costo_nodi[nodo]	#costo del nodo corrente
+	vicini = grafo[nodo]	#vicini sono i nodi collegati al nodo corrente
+	for n in vicini:	#n: lista delle chiavi
+		nuovo_costo_nodo = costo_nodo + vicini[n]
+		if costo_nodi[n] > nuovo_costo_nodo:
+			costo_nodi[n] = nuovo_costo_nodo
+			parents[n] = nodo
 
-    processati.append(nodo)                     #aggiunge il nodo alla lista dei processati
-    nodo = nodo_con_costo_minore(costo_nodi)
+	processati.append(nodo)	#aggiunge il nodo alla lista dei processati
+	nodo = nodo_con_costo_minore(costo_nodi)
 
-print(parents)
-
+print(parents.values())
