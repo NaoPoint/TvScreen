@@ -36,13 +36,7 @@
 
 	<body>
 		<div id="container">
-			<div id="map">
-				<img src="<?=ROOT?>/img/map.png" alt="Mappa del museo" draggable="false" />
-			</div>
-			<div id="secondary">
-				<img id="park"src="<?=ROOT?>/img/park.png" alt="Parcheggio del Nao" draggable="false" />
-				<img id="hologram" src="<?=ROOT?>/img/hologram.png" alt="Ologramma" draggable="false" />
-			</div>
+			<img src="<?=ROOT?>/img/map.png" alt="Mappa del museo" draggable="false" />
 		</div>
 	</body>
 </html>
