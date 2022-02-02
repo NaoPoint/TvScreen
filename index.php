@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="<?=ROOT?>/style.css" type="text/css" media="all">
 
 		<!--Javascript-->
+		<script src="mapdata.js" defer></script>
 		<script src="script.js" defer></script>
 
 		<!--Favicon-->
