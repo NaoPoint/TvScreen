@@ -1,12 +1,25 @@
 body {
 	margin: 0;	/*full screen*/
+
+	overflow: hidden;	/*hide scrollbar*/
 }
 #container {
-	height: 100%;	/*temp*/
+	height: 100vh;	/*temp*/
 	
 	aspect-ratio: 16/9;	/*tv aspect ratio*/
 }
 #container img {
 	width: 100%;	/*only way to make aspect ratio work*/
 	height: 100%;
+}
+.circle {
+	position: absolute;
+	display: inline-block;
+
+	background-color: black;
+	
+	width: 3rem;
+	height: 3rem;
+
+	border-radius: 50%;
 }

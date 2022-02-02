@@ -20,7 +20,7 @@
 		<link rel="stylesheet" href="<?=ROOT?>/style.css" type="text/css" media="all">
 
 		<!--Javascript-->
-		<script src="script.js"></script>
+		<script src="script.js" defer></script>
 
 		<!--Favicon-->
 		<link rel="icon" href="<?=ROOT?>/favicon/favicon.ico" type="image/x-icon">

@@ -1,18 +1,32 @@
+//single point on the map
 class Point {
-    constructor(horizontal, vertical) {
+    constructor(horizontal, vertical) {	//percentage coordinates
         this.horizontal = horizontal;
         this.vertical = vertical;
     }
 }
 
-let main = new Point(291,541);
-let _1 = new Point(292,727);
-let _2 = new Point(474,606);
-let _3 = new Point(1,1);
-let _4 = new Point(1,1);
-let _5 = new Point(1,1);
+console.log(document.body.clientWidth);
+console.log(document.body.clientHeight);
 
-let points = [_1, _2, _3, _4, _5];
+//map points
+let points = [];	//array containing all the points
 
-var circle = document.createElement("span");
-circle.classList.add("main");
+points.push(new Point(16.1,54.8));	//naopoint
+points.push(new Point(16.1,74.4));	//1
+points.push(new Point(27,61.4));	//2
+points.push(new Point(47.4,61.4));	//3
+points.push(new Point(70.2,61.4));	//4
+points.push(new Point(78,73.6));	//5
+
+//point marker:
+for (const point of points) {
+	console.log(point);
+	let circle = document.createElement("span");
+	circle.classList.add("circle");
+
+	circle.style.left = point.horizontal + "%";
+	circle.style.top = point.vertical + "vh";
+
+	document.body.appendChild(circle);
+}
