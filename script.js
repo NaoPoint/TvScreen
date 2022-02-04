@@ -6,7 +6,32 @@ class Point {
     }
 }
 
+class Connection {
+    totalLength = 0;
+
+    constructor(start, end, axis, x, y) {    //array of every turn in the connection
+        console.log(this.totalLength);
+        
+        if(axis) {  //true = horizontal
+            this.totalLength += this.calculateLength(x);
+            this.totalLength += this.calculateLength(y);
+
+            console.log(this.totalLength);
+        }
+    }
+
+    calculateLength(array) {
+        let length = 0;
+        
+        for (let i = 0; i < length(array); i++)
+            length += Math.abs(array[i] - array[i + 1]);
+        
+        return length;
+    }
+}
+
 points = setPoints();	//set points inside mapdata.js
+points = setPaths();	//set points inside mapdata.js
 
 //point marker:
 for (const point of points) {

@@ -13,5 +13,10 @@ function setPoints() {
 }
 
 function setPaths() {
-	
+	let connections = [];
+
+	//naopoint - 1
+	x = [points[0].horizontal, 20]
+	y = [64,8, 74,4, points[1].vertical];
+	connections[0] = new Connection(points[0], points[1], false, x, y);	//vertical
 }
