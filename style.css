@@ -1,28 +1,38 @@
 :root {
-	font-size: max(1vw, 1vh);
+  font-size: 1vmax;
 }
+
 body {
-	margin: 0;	/*full screen*/
-
-	overflow: hidden;	/*hide scrollbar*/
+  margin: 0;
+  /*full screen*/
+  overflow: hidden;
+  /*hide scrollbar*/
 }
+
 #container {
-	width: 100vw;	/*temp*/
-	height: 100vh;
-	
-	aspect-ratio: 16/9;	/*tv aspect ratio*/
+  width: 100vw;
+  /*temp*/
+  height: 100vh;
+  aspect-ratio: 16/9;
+  /*tv aspect ratio*/
 }
+
 #container img {
-	width: 100%;	/*only way to make aspect ratio work*/
-	height: 100%;
+  width: 100%;
+  /*only way to make aspect ratio work*/
+  height: 100%;
 }
+
 .marker {
-	position: absolute;	/*positioned in javascript*/
+  position: absolute;
+  /*positioned in javascript*/
+  border-radius: 50%;
+  /*make span circlular*/
+}
 
-	background-color: yellow;
-	
-	width: 3rem;	/*constant and based on root element*/
-	height: 3rem;
-
-	border-radius: 50%;	/*make span circlular*/
+.marker.connection {
+  background-color: yellow;
+  width: 3rem;
+  /*constant and based on root element*/
+  height: 3rem;
 }

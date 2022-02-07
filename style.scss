@@ -1,0 +1,30 @@
+:root {
+	font-size: 1vmax;
+}
+body {
+	margin: 0;	/*full screen*/
+
+	overflow: hidden;	/*hide scrollbar*/
+}
+#container {
+	width: 100vw;	/*temp*/
+	height: 100vh;
+	
+	aspect-ratio: 16/9;	/*tv aspect ratio*/
+}
+#container img {
+	width: 100%;	/*only way to make aspect ratio work*/
+	height: 100%;
+}
+.marker {
+	position: absolute;	/*positioned in javascript*/
+
+	border-radius: 50%;	/*make span circlular*/
+
+	&.connection {
+		background-color: yellow;
+		
+		width: 3rem;	/*constant and based on root element*/
+		height: 3rem;
+	}
+}
