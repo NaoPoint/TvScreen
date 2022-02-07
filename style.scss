@@ -20,11 +20,18 @@ body {
 	position: absolute;	/*positioned in javascript*/
 
 	border-radius: 50%;	/*make span circlular*/
+	transform: translate(-50%, -50%);	/*anchor point at the center*/
 
-	&.connection {
+	&.point {
 		background-color: yellow;
 		
 		width: 3rem;	/*constant and based on root element*/
 		height: 3rem;
+	}
+	&.connection {
+		background-color: black;
+		
+		width: 2rem;	/*constant and based on root element*/
+		height: 2rem;
 	}
 }
