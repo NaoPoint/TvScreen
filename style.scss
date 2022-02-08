@@ -31,7 +31,14 @@ body {
 	&.connection {
 		background-color: black;
 		
-		width: 2rem;	/*constant and based on root element*/
-		height: 2rem;
+		width: 1.5rem;	/*constant and based on root element*/
+		height: 1.5rem;
 	}
+}
+#canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	z-index: 1;	/*on top of points*/
 }

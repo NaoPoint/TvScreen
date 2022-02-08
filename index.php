@@ -40,5 +40,7 @@
 		<div id="container">
 			<img src="<?=ROOT?>/img/map.png" alt="Mappa del museo" draggable="false" />
 		</div>
+
+		<canvas id="canvas"></canvas>
 	</body>
 </html>
