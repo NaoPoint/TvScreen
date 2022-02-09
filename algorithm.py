@@ -6,10 +6,14 @@ class Algorithm:
 	grafo = {}	#grafico inviato da javascript
 	costo_nodi = {}	#dizionario dei costi iniziali (dal nodo start) che si conoscono (dei nodi collegati al nodo start)
 	parents = {}	#dizionario dei parent di ogni nodo
-
 	processati = []	#lista nodi già elaborati, per non dover rielaborarli in continuazione
 
 	def calcolaPercorso():
+		#importante resettare chiamata precedente
+		__class__.costo_nodi = {}
+		__class__.parents = {}
+		__class__.processati = []
+
 		#copia i costi dei collegamenti al nodo opposto
 		for i in list(__class__.grafo):	#altrimenti non posso aggiungere nodi al grafo
 			for j in __class__.grafo[i]:
@@ -67,7 +71,7 @@ class Algorithm:
 		return nodo_con_costo_minimo
 
 	def percorsoMigliore(num):
-		num = str(num)
+		num = str(num+1)	#1..num_nodi
 		percorso = []	#si resetta ogni volta
 
 		while __class__.parents[num] != __class__.inizio:	#a ritroso
@@ -78,10 +82,10 @@ class Algorithm:
 		return list(reversed(percorso))	#dall'inizio alla fine
 
 	def trovaPercorso():
-		for i in range(1, len(__class__.parents) + 1): #1-9
+		for i in range(len(__class__.parents)):	#0..num_nodi-1
 			percorso = __class__.percorsoMigliore(i)
-			print(i, round(__class__.costo_nodi[i], 2), sep=' - ', end=': ')	#no a capo
+			print(i, round(__class__.costo_nodi[str(i+1)], 2), sep=' - ', end=': ')	#no a capo
 
 			for nodo in percorso:
-				print(nodo, sep=' ')
-
+				print(nodo, end=' ')	#stampa di tutti i nodi
+			print()	#fine riga

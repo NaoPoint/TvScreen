@@ -16,51 +16,54 @@ function setPoints() {
 	return points
 }
 
-function setPaths() {
+function setConnections() {
 	//map connections
-	let connections = []
+	let connections = {}
+
+	for (key of Object.keys(points))	//keys same as points
+		connections[key] = {}
 
 	//naopoint - 1
-	connections.push(new Connection(points["naopoint"], points["1"], false, [21], [64.9, 72.6]))	//vertical
+	connections["naopoint"]["1"] = new Connection(points["naopoint"], points["1"], false, [21], [64.9, 72.6])	//vertical
 
 	//naopoint - 2
-	connections.push(new Connection(points["naopoint"], points["2"], false, [], []))	//vertical
+	connections["naopoint"]["2"] = new Connection(points["naopoint"], points["2"], false, [], [])	//vertical
 
 	//naopoint - 9
-	connections.push(new Connection(points["naopoint"], points["9"], false, [], []))	//vertical
+	connections["naopoint"]["9"] = new Connection(points["naopoint"], points["9"], false, [], [])	//vertical
 
 	//2 - 3
-	connections.push(new Connection(points["2"], points["3"], true, [35.6, 43], [75]))	//horizontal
+	connections["2"]["3"] = new Connection(points["2"], points["3"], true, [35.6, 43], [75])	//horizontal
 
 	//2 - 9
-	connections.push(new Connection(points["2"], points["9"], true, [35.6], []))	//horizontal
+	connections["2"]["9"] = new Connection(points["2"], points["9"], true, [35.6], [])	//horizontal
 
 	//3 - 4
-	connections.push(new Connection(points["3"], points["4"], true, [60], []))	//horizontal
+	connections["3"]["4"] = new Connection(points["3"], points["4"], true, [60], [])	//horizontal
 
 	//4 - 5
-	connections.push(new Connection(points["4"], points["5"], true, [], []))	//horizontal
+	connections["4"]["5"] = new Connection(points["4"], points["5"], true, [], [])	//horizontal
 
 	//4 - 8
-	connections.push(new Connection(points["4"], points["8"], true, [79], [51.6]))	//horizontal
+	connections["4"]["8"] = new Connection(points["4"], points["8"], true, [79], [51.6])	//horizontal
 
 	//4 - 9
-	connections.push(new Connection(points["4"], points["9"], true, [79], []))	//horizontal
+	connections["4"]["9"] = new Connection(points["4"], points["9"], true, [79], [])	//horizontal
 
 	//5 - 6
-	connections.push(new Connection(points["5"], points["6"], true, [86], [89]))	//horizontal
+	connections["5"]["6"] = new Connection(points["5"], points["6"], true, [86], [89])	//horizontal
 
 	//5 - 7
-	connections.push(new Connection(points["5"], points["7"], true, [], []))	//horizontal
+	connections["5"]["7"] = new Connection(points["5"], points["7"], true, [], [])	//horizontal
 
 	//6 - 7
-	connections.push(new Connection(points["6"], points["7"], false, [], [75.4]))	//vertical
+	connections["6"]["7"] = new Connection(points["6"], points["7"], false, [], [75.4])	//vertical
 
 	//7 - 8
-	connections.push(new Connection(points["7"], points["8"], true, [], []))	//horizontal
+	connections["7"]["8"] = new Connection(points["7"], points["8"], true, [], [])	//horizontal
 
 	//8 - 9
-	connections.push(new Connection(points["8"], points["9"], false, [], []))	//vertical
+	connections["8"]["9"] = new Connection(points["8"], points["9"], false, [], [])	//vertical
 
 	return connections
 }

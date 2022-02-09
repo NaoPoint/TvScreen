@@ -1,23 +1,30 @@
 //ajax request to flask
 class Ajax {
-	static method = "POST"
-	static hostPort = "127.0.0.1:5000"	//same as in ajax.py
+	static #METHOD = "POST"
+	static #HOST = "127.0.0.1:5000"	//same as in ajax.py
 
 	static request(serverData, route) {
+		let result
+
 		$.ajax({	//ajax request
-			type: this.method,
-			url: "http://" + this.hostPort + "/" + route,	//path caught by Flask on ajax.py
-			data: JSON.stringify(serverData),	//stringifies graph
+			type: this.#METHOD,
+			url: "http://" + this.#HOST + "/" + route,	//path caught by Flask on ajax.py
+			data: JSON.stringify(serverData),	//stringify graph (from list/dict to json)
 			contentType: "application/json",	//data type sent to server
 			dataType: "json",	//data type expected from server
+			async: false,
 
 			success: function(response) {	//response in case of success
+				result = response	//accessible from outside
 				console.info(response)
 			},
 			error: function(error) {	//error message
+				result = NaN	//undefined value
 				console.error(error.responseText);
 			}
 		})
+
+		return result	//either success or error (NaN)
 	}
 }
 
@@ -140,23 +147,25 @@ class Connection {
 }
 
 let points = setPoints()	//set points inside mapdata.js
-let paths = setPaths()	//set points inside mapdata.js
+let connections = setConnections()	//set points inside mapdata.js
 
 Point.displayPoints(points)
-// Connection.displayAllConnections(paths, true)//display all paths
+// Connection.displayAllConnections(connections, true)//display all connections
 
 //create json graph for python
 graph = {}
-for (const connection of paths) {
-	let start = connection.start
+for (const point of Object.values(connections))
+	for (const connection of Object.values(point)) {
+		let start = connection.start
 
-	if (!(start in graph))	//if subgraph not defined yet
-		graph[start] = {}	//subgraph for a single point
-	
-	graph[start][connection.end] = connection.totalLength	//assign cost to graph connection
-}
+		if (!(start in graph))	//if subgraph not defined yet
+			graph[start] = {}	//subgraph for a single point
+		
+		graph[start][connection.end] = connection.totalLength	//assign cost to graph connection
+	}
 
-Ajax.request(graph, "graph")
-Ajax.request(4, "path")
+Ajax.request(graph, "graph")	//set graph
+let display = Ajax.request(3, "path")	//get path
 
-Connection.displayConnection(paths[1])	//display single path
+for (let i = 0; i < display.length - 1; i++)
+	Connection.displayConnection(connections[display[i]][display[i+1]])	//display single path
