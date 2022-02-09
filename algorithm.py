@@ -68,15 +68,20 @@ class Algorithm:
 
 	def percorsoMigliore(num):
 		num = str(num)
-		percorso = ''	#si resetta ogni volta
+		percorso = []	#si resetta ogni volta
 
 		while __class__.parents[num] != __class__.inizio:	#a ritroso
-			percorso += str(__class__.parents[num]) + ' '	#aggiunti i nodi in cui passo
+			percorso.append(str(__class__.parents[num]))	#aggiunti i nodi in cui passo
 			num = __class__.parents[num]
 		
-		return percorso + __class__.inizio
+		percorso.append(__class__.inizio)	#punto iniziale in ogni caso
+		return list(reversed(percorso))	#dall'inizio alla fine
 
 	def trovaPercorso():
 		for i in range(1, len(__class__.parents) + 1): #1-9
 			percorso = __class__.percorsoMigliore(i)
-			print(i, round(__class__.costo_nodi[i], 2), percorso, sep=' - ', end=': ')	#no a capo
+			print(i, round(__class__.costo_nodi[i], 2), sep=' - ', end=': ')	#no a capo
+
+			for nodo in percorso:
+				print(nodo, sep=' ')
+
