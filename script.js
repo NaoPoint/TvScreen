@@ -134,15 +134,19 @@ for (const connection of paths) {
 	graph[start][connection.end] = connection.totalLength	//assign cost to graph connection
 }
 
-json = JSON.stringify(graph)	//text to send to python
-console.log(json)
+jsonGraph = JSON.stringify(graph)	//text to send to python
+console.log(jsonGraph)
 
-$.ajax({
-    type: "POST",
-    url: "alghorithm.py",
-    data: json,
-    dataType: "json"
-}).done(function () {
-    $('#modal-1').modal('hide');
-    table.row.data([val_no, val_name, val_address, val_phone, val_car, val_penalty, UserIndex_CreateEditButton(val_no, val_name, val_address, val_phone, val_car, val_penalty), UserIndex_CreateDeleteButton(val_no)], $('#' + tempUpdate));
+$.ajax({	//ajax request
+	type: "POST",
+	url: "/ajax",	//path caught by Flask on ajax.py
+	data: jsonGraph,	//stringifies graph
+	dataType: "json",
+
+	success: function(response) {	//response in case of success
+		console.log(response)
+	},
+	error: function(error) {	//error message
+		console.log(error.responseText);
+	}
 })
