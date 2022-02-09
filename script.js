@@ -1,3 +1,26 @@
+//ajax request to flask
+class Ajax {
+	static method = "POST"
+	static hostPort = "127.0.0.1:5000"	//same as in ajax.py
+
+	static request(serverData, route) {
+		$.ajax({	//ajax request
+			type: this.method,
+			url: "http://" + this.hostPort + "/" + route,	//path caught by Flask on ajax.py
+			data: JSON.stringify(serverData),	//stringifies graph
+			contentType: "application/json",	//data type sent to server
+			dataType: "json",	//data type expected from server
+
+			success: function(response) {	//response in case of success
+				console.info(response)
+			},
+			error: function(error) {	//error message
+				console.error(error.responseText);
+			}
+		})
+	}
+}
+
 //single point on the map:
 class Point {
     constructor(name, horizontal, vertical) {	//percentage coordinates
@@ -120,8 +143,7 @@ let points = setPoints()	//set points inside mapdata.js
 let paths = setPaths()	//set points inside mapdata.js
 
 Point.displayPoints(points)
-// Connection.displayConnection(paths[1])	//display single path
-Connection.displayAllConnections(paths, true)//display all paths
+// Connection.displayAllConnections(paths, true)//display all paths
 
 //create json graph for python
 graph = {}
@@ -134,19 +156,7 @@ for (const connection of paths) {
 	graph[start][connection.end] = connection.totalLength	//assign cost to graph connection
 }
 
-jsonGraph = JSON.stringify(graph)	//text to send to python
-console.log(jsonGraph)
+Ajax.request(graph, "graph")
+Ajax.request(4, "path")
 
-$.ajax({	//ajax request
-	type: "POST",
-	url: "/ajax",	//path caught by Flask on ajax.py
-	data: jsonGraph,	//stringifies graph
-	dataType: "json",
-
-	success: function(response) {	//response in case of success
-		console.log(response)
-	},
-	error: function(error) {	//error message
-		console.log(error.responseText);
-	}
-})
+Connection.displayConnection(paths[1])	//display single path

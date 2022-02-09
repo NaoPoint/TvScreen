@@ -1,16 +1,33 @@
-from flask import Flask, render_template, request
-import json
+from flask import Flask, render_template, jsonify, request
+from flask_cors import CORS
 
-app = Flask(__name__)	#current module name
-
-@app.route('/')
-def index():
-	return render_template('index.php')
-
-@app.route('/ajax', methods=['POST'])
-def ajax():
-	print(request)
-	return {'processed': 'true'}
+from algorithm import Algorithm
 
 if __name__ == "__main__":	#if in main module
-	app.run(debug=True)
+	app = Flask(__name__)	#current module name
+	CORS(app)	#send Access-Control-Allow-Origin header
+
+	""" 
+	@app.route('/')
+	def index():
+		return render_template('index.php')
+	"""
+
+	@app.route('/graph', methods=['POST'])	#update map graph
+	def graph():
+		graph = request.get_json()
+
+		Algorithm.grafo = graph	#json to dict
+		Algorithm.calcolaPercorso()
+
+		return jsonify({'success': graph})
+	
+	@app.route('/path', methods=['POST'])	#request best path to point
+	def path():
+		num = request.get_json()
+		path = Algorithm.percorsoMigliore(num)
+
+		return jsonify(path)
+
+	app.env = 'development'
+	app.run(host='127.0.0.1', port='5000', debug=False)	#same as in script-js
