@@ -48,7 +48,7 @@ function setPaths() {
 	connections.push(new Connection(points["4"], points["9"], true, [79], []))	//horizontal
 
 	//5 - 6
-	connections.push(new Connection(points["5"], points["6"], true, [86], [90]))	//horizontal
+	connections.push(new Connection(points["5"], points["6"], true, [86], [89]))	//horizontal
 
 	//5 - 7
 	connections.push(new Connection(points["5"], points["7"], true, [], []))	//horizontal

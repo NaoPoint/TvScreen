@@ -64,7 +64,7 @@ class Connection {
 			if(timer)
 				setTimeout(function(connection) {
 					Connection.displayConnection(connection)
-				}, i = i + 1000, connection)
+				}, i = i + 200, connection)
 			else
 				this.displayConnection(connection)
 		}
@@ -135,4 +135,4 @@ for (const connection of paths) {
 }
 
 json = JSON.stringify(graph)	//text to send to python
-console.log(graph)
+console.log(json)
