@@ -167,5 +167,12 @@ for (const point of Object.values(connections))
 Ajax.request(graph, "graph")	//set graph
 let display = Ajax.request(3, "path")	//get path
 
-for (let i = 0; i < display.length - 1; i++)
-	Connection.displayConnection(connections[display[i]][display[i+1]])	//display single path
+for (let i = 0; i < display.length - 1; i++) {
+	let point1 = display[i]
+	let point2 = display[i+1]
+
+	if(point2 in connections[point1])	//it could be one way or the opposite
+		Connection.displayConnection(connections[point1][point2])	//display single path
+	else
+		Connection.displayConnection(connections[point2][point1])	//display single path
+}

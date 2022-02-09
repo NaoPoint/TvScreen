@@ -17,15 +17,15 @@ if __name__ == "__main__":	#if in main module
 	def graph():
 		graph = request.get_json()
 
-		Algorithm.grafo = graph	#json to dict
-		Algorithm.calcolaPercorso()
+		Algorithm.graph = graph	#json to dict
+		Algorithm.calculate()	#calculate best paths
 
 		return jsonify({'success': graph})
 	
 	@app.route('/path', methods=['POST'])	#request best path to point
 	def path():
 		num = request.get_json()
-		path = Algorithm.percorsoMigliore(num)
+		path = Algorithm.bestPath(num)	#best path for a given point
 
 		return jsonify(path)
 
