@@ -136,3 +136,13 @@ for (const connection of paths) {
 
 json = JSON.stringify(graph)	//text to send to python
 console.log(json)
+
+$.ajax({
+    type: "POST",
+    url: "alghorithm.py",
+    data: json,
+    dataType: "json"
+}).done(function () {
+    $('#modal-1').modal('hide');
+    table.row.data([val_no, val_name, val_address, val_phone, val_car, val_penalty, UserIndex_CreateEditButton(val_no, val_name, val_address, val_phone, val_car, val_penalty), UserIndex_CreateDeleteButton(val_no)], $('#' + tempUpdate));
+})

@@ -1,6 +1,7 @@
 # Algoritmo dijkastra
 import math
 import json
+import flask
 
 grafo = json.loads('{"2":{"3":42.599999999999994,"9":51.9},"3":{"4":23.8},"4":{"5":19.2,"8":33.7,"9":35.7},"5":{"6":40.7,"7":20.6},"6":{"7":21.7},"7":{"8":18.900000000000002},"8":{"9":25},"naopoint":{"1":27.400000000000002,"2":18.5,"9":55.199999999999996}}')	#temp
 
@@ -80,6 +81,6 @@ def trova_percorso(parents):
 			percorso += str(parents[i]) + ' '
 			i = parents[i]
 		
-		print(percorso)
+		print(percorso + inizio)
 
 trova_percorso(parents)
