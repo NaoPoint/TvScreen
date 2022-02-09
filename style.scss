@@ -23,6 +23,8 @@ body {
 	transform: translate(-50%, -50%);	/*anchor point at the center*/
 
 	&.point {
+		visibility: hidden;	/*for production*/
+
 		background-color: yellow;
 		
 		width: 3rem;	/*constant and based on root element*/

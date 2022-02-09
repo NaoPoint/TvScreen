@@ -33,6 +33,8 @@ body {
 }
 
 .marker.point {
+  visibility: hidden;
+  /*for production*/
   background-color: yellow;
   width: 3rem;
   /*constant and based on root element*/

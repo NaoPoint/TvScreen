@@ -165,7 +165,7 @@ for (const point of Object.values(connections))
 	}
 
 Ajax.request(graph, "graph")	//set graph
-let display = Ajax.request(3, "path")	//get path
+let display = Ajax.request(6, "path")	//get path
 
 for (let i = 0; i < display.length - 1; i++) {
 	let point1 = display[i]
