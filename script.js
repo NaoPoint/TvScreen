@@ -90,14 +90,15 @@ class Connection {
 
 	static displayAllConnections(connections, timer) {	//display connection between points
 		let i = 0	//for timer
-		for (const connection of connections) {
-			if(timer)
-				setTimeout(function(connection) {
-					Connection.displayConnection(connection)
-				}, i = i + 200, connection)
-			else
-				this.displayConnection(connection)
-		}
+		for (const point of Object.values(connections))
+			for (const connection of Object.values(point)) {
+				if(timer)
+					setTimeout(function(connection) {
+						Connection.displayConnection(connection)
+					}, i = i + 200, connection)
+				else
+					this.displayConnection(connection)
+			}
 	}
 
 	static displayConnection(connection) {	//display a single connection
