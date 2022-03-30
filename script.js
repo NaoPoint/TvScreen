@@ -117,6 +117,11 @@ class Connection {
 		this.#drawPath()	//draw actual path
 	}
 
+	static removeConnections() {
+		document.querySelectorAll(".marker").forEach(marker => marker.remove())	//delete every point
+		this.#CONTEXT.clearRect(0, 0, canvas.width, canvas.height)	//empty canvas (connections)
+	}
+
 	static #displayConnectionPoint(x, y) {	//display a single point of a connection
 		let marker = document.createElement("span")	//virtual element
 		marker.classList.add("connection", "marker")	//for css
@@ -166,14 +171,27 @@ for (const point of Object.values(connections))
 	}
 
 Ajax.request(graph, "graph")	//set graph
-let display = Ajax.request(6, "path")	//get path
+currentPoint = null	//initial empty state
 
-for (let i = 0; i < display.length - 1; i++) {
-	let point1 = display[i]
-	let point2 = display[i+1]
+setInterval(function() {	//continuous graph update
+	let newPoint = Ajax.request(null, "get")	//ask for request update
+	
+	if(newPoint != currentPoint) {	//check if path changed
+		Connection.removeConnections()	//delete previous path
+		currentPoint = newPoint	//update current point
 
-	if(point2 in connections[point1])	//it could be one way or the opposite
-		Connection.displayConnection(connections[point1][point2])	//display single path
-	else
-		Connection.displayConnection(connections[point2][point1])	//display single path
-}
+		if(currentPoint != null) {	//if no empty path
+			let display = Ajax.request(currentPoint, "path")	//get path
+
+			for (let i = 0; i < display.length - 1; i++) {	//load new path
+				let point1 = display[i]
+				let point2 = display[i+1]
+
+				if(point2 in connections[point1])	//it could be one way or the opposite
+					Connection.displayConnection(connections[point1][point2])	//display single path
+				else
+					Connection.displayConnection(connections[point2][point1])	//display single path
+			}
+		}
+	}
+}, 2000)	//new ajax request every 1 second

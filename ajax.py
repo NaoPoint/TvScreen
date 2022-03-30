@@ -3,6 +3,8 @@ from flask_cors import CORS
 
 from algorithm import Algorithm
 
+point = None
+
 if __name__ == "__main__":	#if in main module
 	app = Flask(__name__)	#current module name
 	CORS(app)	#send Access-Control-Allow-Origin header
@@ -12,6 +14,19 @@ if __name__ == "__main__":	#if in main module
 	def index():
 		return render_template('index.php')
 	"""
+
+	@app.route('/update', methods=['POST'])	#update requested point from choreographe
+	def update():
+		global point
+		point = request.get_json()	#new point to be set
+
+		return jsonify(True)	#dummy
+
+	@app.route('/get', methods=['POST'])	#return requested point
+	def get():
+		request.get_data()	#ignore request data
+
+		return jsonify(point)	#null until /update is called
 
 	@app.route('/graph', methods=['POST'])	#update map graph
 	def graph():
