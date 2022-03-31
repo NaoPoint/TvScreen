@@ -57,6 +57,8 @@ class Algorithm:
 			__class__.processati.append(nodo)	#aggiunge il nodo alla lista dei processati
 			nodo = __class__.nodoConCostoMinore()
 
+		return num_nodi	#per ajax
+
 	#funzione per trovare il nodo con costo minore che esamina il dizionario costo_nodi
 	def nodoConCostoMinore():
 		costo_minimo = math.inf

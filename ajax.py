@@ -1,9 +1,10 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from algorithm import Algorithm
 
-point = None
+point = None	#last requested point
+length = None	#number of points
 
 if __name__ == "__main__":	#if in main module
 	app = Flask(__name__)	#current module name
@@ -17,25 +18,37 @@ if __name__ == "__main__":	#if in main module
 
 	@app.route('/update', methods=['POST'])	#update requested point from choreographe
 	def update():
-		global point
-		point = request.get_json()	#new point to be set
+		update = request.get_json()	#new point to be set
 
-		return jsonify(True)	#dummy
+		try:
+			if(length is not None and int(update) > 0 and int(update) <= length):	#check graph set and valid point
+				global point
+				point = update
+
+				return jsonify(point)	#confirmation
+		except ValueError:	#if not integer
+			pass	#return error below
+
+		return jsonify(False)	#error
 
 	@app.route('/get', methods=['POST'])	#return requested point
 	def get():
 		request.get_data()	#ignore request data
 
-		return jsonify(point)	#null until /update is called
+		if(length is not None):	#if graph has already been set
+			return jsonify(point)	#null until /update is called
+		
+		return jsonify(False)	#error (reload in script.js)
 
 	@app.route('/graph', methods=['POST'])	#update map graph
 	def graph():
 		graph = request.get_json()
-
 		Algorithm.graph = graph	#json to dict
-		Algorithm.calculate()	#calculate best paths
 
-		return jsonify({'success': graph})
+		global length	#save number of points
+		length = Algorithm.calculate()	#calculate best paths
+
+		return jsonify({'success': graph})	#confirmation
 	
 	@app.route('/path', methods=['POST'])	#request best path to point
 	def path():

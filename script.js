@@ -175,8 +175,11 @@ currentPoint = null	//initial empty state
 
 setInterval(function() {	//continuous graph update
 	let newPoint = Ajax.request(null, "get")	//ask for request update
-	
-	if(newPoint != currentPoint) {	//check if path changed
+
+	if(newPoint === false) {
+		window.location.reload()
+		console.log("reloading...")
+	} else if(newPoint != currentPoint) {	//check if path changed
 		Connection.removeConnections()	//delete previous path
 		currentPoint = newPoint	//update current point
 
@@ -194,4 +197,4 @@ setInterval(function() {	//continuous graph update
 			}
 		}
 	}
-}, 2000)	//new ajax request every 1 second
+}, 1000)	//new ajax request every 1 second
