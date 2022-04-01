@@ -6,7 +6,7 @@ from algorithm import Algorithm
 point = None	#last requested point
 length = None	#number of points
 
-if __name__ == "__main__":	#if in main module
+if __name__ == "__main__":	#if in main module (not imported)
 	app = Flask(__name__)	#current module name
 	CORS(app)	#send Access-Control-Allow-Origin header
 
