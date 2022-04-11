@@ -14,8 +14,8 @@ def updateMap(num = None):
 	try:
 		res = requests.post('http://127.0.0.1:5000/update', json=dictToSend)	#flask endpoint
 		dictFromServer = res.json()
-	except requests.ConnectionError:
-		dictFromServer = False	#connection refused / aborted
+	except requests.ConnectionError as e:
+		dictFromServer = e	#connection refused / aborted
 	finally:
 		print(dictFromServer)	#print result (false if error)
 
