@@ -58,7 +58,7 @@ if __name__ == "__main__":	#if in main module (not imported)
 
 		return jsonify(path)
 
-	serve(app, host="127.0.0.1", port=5000)
+	serve(app, host="0.0.0.0", port=5000)
 
 	#app.env = 'development'
-	#app.run(host='127.0.0.1', port='5000', threaded=True, debug=True)	#same as in script-js
+	#app.run(host='0.0.0.0', port='5000', threaded=True, debug=True)	#same as in script-js

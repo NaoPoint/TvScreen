@@ -1,7 +1,7 @@
 //ajax request to flask
 class Ajax {
 	static #METHOD = "POST"
-	static #HOST = "127.0.0.1:5000"	//same as in ajax.py
+	static #HOST = "192.168.94.59:5000"	//same as in ajax.py
 
 	static request(serverData, route) {
 		let result
