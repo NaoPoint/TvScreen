@@ -7,6 +7,8 @@ from algorithm import Algorithm
 point = None	#last requested point
 length = None	#number of points
 
+points = None	#dictionary containing points coordinates
+
 if __name__ == "__main__":	#if in main module (not imported)
 	app = Flask(__name__)	#current module name
 	CORS(app)	#send Access-Control-Allow-Origin header
@@ -26,7 +28,8 @@ if __name__ == "__main__":	#if in main module (not imported)
 				global point
 				point = update
 
-				return jsonify(point)	#confirmation
+				if(points is not None):	#if coordinates have already been set
+					return jsonify(points[point])	#confirmation
 		except ValueError:	#if not integer
 			pass	#return error below
 
@@ -50,6 +53,13 @@ if __name__ == "__main__":	#if in main module (not imported)
 		length = Algorithm.calculate()	#calculate best paths
 
 		return jsonify({'success': graph})	#confirmation
+	
+	@app.route('/points', methods=['POST'])	#save all map points
+	def points():
+		global points
+		points = request.get_json()	#save points to send to choregraphe
+
+		return jsonify({'success': points})	#confirmation
 	
 	@app.route('/path', methods=['POST'])	#request best path to point
 	def path():

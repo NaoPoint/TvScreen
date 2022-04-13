@@ -173,6 +173,8 @@ for (const point of Object.values(connections))
 Ajax.request(graph, "graph")	//set graph
 currentPoint = null	//initial empty state
 
+Ajax.request(points, "points")	//set graph
+
 setInterval(function() {	//continuous graph update
 	let newPoint = Ajax.request(null, "get")	//ask for request update
 
