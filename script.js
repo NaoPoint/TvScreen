@@ -1,7 +1,7 @@
 //ajax request to flask
 class Ajax {
 	static #METHOD = "POST"
-	static #HOST = "192.168.94.59:5000"	//same as in ajax.py
+	static #HOST = "192.168.1.100:5000"	//same as in ajax.py
 
 	static request(serverData, route) {
 		let result
@@ -61,7 +61,7 @@ class Connection {
 
 		this.start = start.name	//e.g. 1,2,3,naopoint
 		this.end = end.name
-		this.axis = axis  //true = horizontal first in the path, false = vertical first
+		this.axis = axis  //true = horizontal first in the path, false = vertical first, -1 = invisible
 		this.x = x
 		this.y = y
 
@@ -102,19 +102,21 @@ class Connection {
 	}
 
 	static displayConnection(connection) {	//display a single connection
-		this.#displayConnectionPoint(connection.x[0], connection.y[0])	//starting point of path
+		if(connection.axis !== -1) {	//invisible marker
+			this.#displayConnectionPoint(connection.x[0], connection.y[0])	//starting point of path
 
-		for(let i = 1; i < Math.max(connection.x.length, connection.y.length); i++) {	//for direction change
-			if(connection.axis)	//display horizontal change first
-				this.#displayConnectionPoint(connection.x[i], connection.y[i-1])
-			else	//display vertical change first
-				this.#displayConnectionPoint(connection.x[i-1], connection.y[i])
+			for(let i = 1; i < Math.max(connection.x.length, connection.y.length); i++) {	//for direction change
+				if(connection.axis)	//display horizontal change first
+					this.#displayConnectionPoint(connection.x[i], connection.y[i-1])
+				else	//display vertical change first
+					this.#displayConnectionPoint(connection.x[i-1], connection.y[i])
 
-			if(i in connection.x && i in connection.y)	//in case of even number of points
-				this.#displayConnectionPoint(connection.x[i], connection.y[i])	//points common to horizontal and vertical axis (starting point, final point, even points (if two or more points))
+				if(i in connection.x && i in connection.y)	//in case of even number of points
+					this.#displayConnectionPoint(connection.x[i], connection.y[i])	//points common to horizontal and vertical axis (starting point, final point, even points (if two or more points))
+			}
+
+			this.#drawPath()	//draw actual path
 		}
-
-		this.#drawPath()	//draw actual path
 	}
 
 	static removeConnections() {
@@ -174,9 +176,6 @@ Ajax.request(graph, "graph")	//set graph
 currentPoint = null	//initial empty state
 
 Ajax.request(points, "points")	//set graph
-
-Connection.displayAllConnections(connections)
-new new	//! error: stop script
 
 setInterval(function() {	//continuous graph update
 	let newPoint = Ajax.request(null, "get")	//ask for request update

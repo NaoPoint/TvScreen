@@ -2,16 +2,16 @@ function setPoints() {
 	//map points:
 	let points = {}	//array containing all the points
 
-	points["naopoint"] = new Point("naopoint", 17.1, 56.8)	//naopoint
-	points["1"] = new Point("1", 17.1, 76.4)	//1
-	points["2"] = new Point("2", 28, 64.4)	//2
-	points["3"] = new Point("3", 48.4, 63.4)	//3
-	points["4"] = new Point("4", 71.2, 64.4)	//4
-	points["5"] = new Point("5", 79, 75.8)	//5
-	points["6"] = new Point("6", 93.5, 78)	//6
-	points["7"] = new Point("7", 86.8, 63)	//7
-	points["8"] = new Point("8", 85.7, 45.2)	//8
-	points["9"] = new Point("9", 65.5, 50)	//9
+	points["naopoint"] = new Point("naopoint", 70, 17)	//naopoint
+	points["1"] = new Point("1", 27.8, 26)	//scala 0
+	points["2"] = new Point("2", 75, 23)	//scala 1
+	points["3"] = new Point("3", 26.5, 71.2)	//scala 2
+	points["4"] = new Point("4", 75, 71.2)	//scala 3
+	points["5"] = new Point("5", 67.52, 31)	//torcitoio 1
+	points["6"] = new Point("6", 16, 22.5)	//ruota idraulica 0
+	points["7"] = new Point("7", 25.4, 83.5)	//scatola dei colori 2
+	points["8"] = new Point("8", 85.2, 33.5)	//biblioteca 1
+	points["9"] = new Point("9", 39, 80.5)	//graticcio 2
 
 	return points
 }
@@ -23,47 +23,32 @@ function setConnections() {
 	for (key of Object.keys(points))	//keys same as points
 		connections[key] = {}
 
-	//naopoint - 1
-	connections["naopoint"]["1"] = new Connection(points["naopoint"], points["1"], false, [21], [64.9, 72.6])	//vertical
+	//naopoint - scala 1
+	connections["naopoint"]["2"] = new Connection(points["naopoint"], points["2"], true, [76], [])	//horizontal
+	
+	//scala 0 - scala 1
+	connections["1"]["2"] = new Connection(points["1"], points["2"], -1, [], [])	//invisible
+	
+	//scala 1 - scala 2
+	connections["2"]["3"] = new Connection(points["2"], points["3"], -1, [], [])	//invisible
+	
+	//scala 2 - scala 3
+	connections["3"]["4"] = new Connection(points["3"], points["4"], -1, [], [])	//invisible
+	
+	//scala 0 - 6
+	connections["1"]["6"] = new Connection(points["1"], points["6"], false, [9], [40])	//vertical
+	
+	//scala 2 - scatola dei colori
+	connections["3"]["7"] = new Connection(points["3"], points["7"], false, [], [])	//vertical
+	
+	//scala 1 - torcitoio
+	connections["2"]["5"] = new Connection(points["2"], points["5"], false, [], [26])	//vertical
 
-	//naopoint - 2
-	connections["naopoint"]["2"] = new Connection(points["naopoint"], points["2"], false, [], [])	//vertical
+	//scala 1 - biblioteca
+	connections["2"]["8"] = new Connection(points["2"], points["8"], false, [81.4], [28, 25.1])	//vertical
 
-	//naopoint - 9
-	connections["naopoint"]["9"] = new Connection(points["naopoint"], points["9"], false, [], [])	//vertical
-
-	//2 - 3
-	connections["2"]["3"] = new Connection(points["2"], points["3"], true, [35.6, 43], [75])	//horizontal
-
-	//2 - 9
-	connections["2"]["9"] = new Connection(points["2"], points["9"], true, [35.6], [])	//horizontal
-
-	//3 - 4
-	connections["3"]["4"] = new Connection(points["3"], points["4"], true, [60], [])	//horizontal
-
-	//4 - 5
-	connections["4"]["5"] = new Connection(points["4"], points["5"], true, [], [])	//horizontal
-
-	//4 - 8
-	connections["4"]["8"] = new Connection(points["4"], points["8"], true, [79], [51.6])	//horizontal
-
-	//4 - 9
-	connections["4"]["9"] = new Connection(points["4"], points["9"], true, [79], [])	//horizontal
-
-	//5 - 6
-	connections["5"]["6"] = new Connection(points["5"], points["6"], true, [86], [89])	//horizontal
-
-	//5 - 7
-	connections["5"]["7"] = new Connection(points["5"], points["7"], true, [], [])	//horizontal
-
-	//6 - 7
-	connections["6"]["7"] = new Connection(points["6"], points["7"], false, [], [75.4])	//vertical
-
-	//7 - 8
-	connections["7"]["8"] = new Connection(points["7"], points["8"], true, [], [])	//horizontal
-
-	//8 - 9
-	connections["8"]["9"] = new Connection(points["8"], points["9"], false, [], [])	//vertical
+	//scala 2 - graticcio
+	connections["3"]["9"] = new Connection(points["3"], points["9"], false, [], [76.5])	//vertical
 
 	return connections
 }

@@ -12,7 +12,7 @@ def updateMap(num = None):
 	json.loads(dictToSend)	#convert to json
 
 	try:
-		res = requests.post('http://192.168.94.59:5000/update', json=dictToSend)	#flask endpoint
+		res = requests.post('http://192.168.1.100:5000/update', json=dictToSend)	#flask endpoint
 		dictFromServer = res.json()
 	except requests.ConnectionError as e:
 		dictFromServer = e	#connection refused / aborted
