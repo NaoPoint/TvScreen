@@ -175,6 +175,9 @@ currentPoint = null	//initial empty state
 
 Ajax.request(points, "points")	//set graph
 
+Connection.displayAllConnections(connections)
+new new	//! error: stop script
+
 setInterval(function() {	//continuous graph update
 	let newPoint = Ajax.request(null, "get")	//ask for request update
 
