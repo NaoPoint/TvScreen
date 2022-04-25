@@ -12,7 +12,8 @@ function setPoints() {
 	points["7"] = new Point("7", 16, 22.5)	//ruota idraulica 0
 	points["8"] = new Point("8", 28.1, 82.6)	//incannatoio 2
 	points["9"] = new Point("9", 25.4, 83.5)	//scatola dei colori 2
-	points["10"] = new Point("10", 85.2, 33.5)	//biblioteca 1
+	points["10"] = new Point("10", 33.9, 72.5)	//bagno 2
+	points["11"] = new Point("11", 85.2, 33.5)	//biblioteca 1
 
 	return points
 }
@@ -51,8 +52,11 @@ function setConnections() {
 	//scala 2 - scatola dei colori
 	connections["3"]["9"] = new Connection(points["3"], points["9"], false, [], [])	//vertical
 
+	//scala 2 - bagno
+	connections["3"]["10"] = new Connection(points["3"], points["10"], false, [], [76.5])	//vertical
+
 	//scala 1 - biblioteca
-	connections["2"]["10"] = new Connection(points["2"], points["10"], false, [81.4], [28, 25.9])	//vertical
+	connections["2"]["11"] = new Connection(points["2"], points["11"], false, [81.4], [28, 25.9])	//vertical
 
 	return connections
 }
