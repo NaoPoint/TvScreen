@@ -8,10 +8,11 @@ function setPoints() {
 	points["3"] = new Point("3", 26.5, 71.2)	//scala 2
 	points["4"] = new Point("4", 75, 71.2)	//scala 3
 	points["5"] = new Point("5", 67.52, 31)	//torcitoio 1
-	points["6"] = new Point("6", 16, 22.5)	//ruota idraulica 0
-	points["7"] = new Point("7", 25.4, 83.5)	//scatola dei colori 2
-	points["8"] = new Point("8", 85.2, 33.5)	//biblioteca 1
-	points["9"] = new Point("9", 39, 80.5)	//graticcio 2
+	points["6"] = new Point("6", 39, 80.5)	//graticcio 2
+	points["7"] = new Point("7", 16, 22.5)	//ruota idraulica 0
+	points["8"] = new Point("8", 28.1, 82.6)	//incannatoio 2
+	points["9"] = new Point("9", 25.4, 83.5)	//scatola dei colori 2
+	points["10"] = new Point("10", 85.2, 33.5)	//biblioteca 1
 
 	return points
 }
@@ -35,20 +36,23 @@ function setConnections() {
 	//scala 2 - scala 3
 	connections["3"]["4"] = new Connection(points["3"], points["4"], -1, [], [])	//invisible
 	
-	//scala 0 - 6
-	connections["1"]["6"] = new Connection(points["1"], points["6"], false, [9], [40])	//vertical
-	
-	//scala 2 - scatola dei colori
-	connections["3"]["7"] = new Connection(points["3"], points["7"], false, [], [])	//vertical
-	
 	//scala 1 - torcitoio
 	connections["2"]["5"] = new Connection(points["2"], points["5"], false, [], [26])	//vertical
 
-	//scala 1 - biblioteca
-	connections["2"]["8"] = new Connection(points["2"], points["8"], false, [81.4], [28, 25.1])	//vertical
-
 	//scala 2 - graticcio
-	connections["3"]["9"] = new Connection(points["3"], points["9"], false, [], [76.5])	//vertical
+	connections["3"]["6"] = new Connection(points["3"], points["6"], false, [31.3], [76.5, 83.8])	//vertical
+	
+	//scala 0 - ruota idraulica
+	connections["1"]["7"] = new Connection(points["1"], points["7"], false, [9], [40])	//vertical
+
+	//scala 2 - incannatoio
+	connections["3"]["8"] = new Connection(points["3"], points["8"], false, [], [])	//vertical
+	
+	//scala 2 - scatola dei colori
+	connections["3"]["9"] = new Connection(points["3"], points["9"], false, [], [])	//vertical
+
+	//scala 1 - biblioteca
+	connections["2"]["10"] = new Connection(points["2"], points["10"], false, [81.4], [28, 25.9])	//vertical
 
 	return connections
 }
