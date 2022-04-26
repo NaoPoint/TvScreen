@@ -138,11 +138,21 @@ class Connection {
 	}
 
 	static #drawPath() {
-		//set line stroke and line width
-		this.#CONTEXT.strokeStyle = "black";
-		this.#CONTEXT.lineWidth = 5;
+		//set line style	
+		this.#CONTEXT.lineWidth = 7;	//stroke
+		this.#CONTEXT.lineJoin = "round";	//angle between lines
+		this.#CONTEXT.shadowOffsetX = 0;		//distance between line and shadow
+		this.#CONTEXT.shadowOffsetY = 0;
+		this.#CONTEXT.shadowBlur = 5;
+		this.#CONTEXT.shadowColor = "white";
+		
 
 		for(let i = 0; i < this.#pathPoints.length - 1; i++) {	//all but the last (one li)
+			var gradient = this.#CONTEXT.createLinearGradient(this.#pathPoints[i]["x"], this.#pathPoints[i]["y"], this.#pathPoints[i + 1]["x"], this.#pathPoints[i + 1]["y"]);	//create gradient
+			gradient.addColorStop(0, "rgba(48,207,208,1)");	//gradient color 1
+			gradient.addColorStop(1, "rgba(51,8,130,1)");	//gradient color 2
+			this.#CONTEXT.strokeStyle = gradient;
+			
 			//draw the line
 			this.#CONTEXT.beginPath();
 			this.#CONTEXT.moveTo(this.#pathPoints[i]["x"], this.#pathPoints[i]["y"]);	//initial point

@@ -42,16 +42,18 @@ body {
 }
 
 .marker.connection {
-  background-color: black;
-  width: 1.5rem;
+  background-color: #508cb0;
+  width: 1rem;
   /*constant and based on root element*/
-  height: 1.5rem;
+  height: 1rem;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  /*exagonal shape*/
 }
 
 #canvas {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 0;
   /*on top of points*/
 }
