@@ -10,6 +10,9 @@ length = None	#number of points
 points = None	#dictionary containing points coordinates
 
 if __name__ == "__main__":	#if in main module (not imported)
+	print("NaoPoint: flask server is running. Do not close this window!\n")
+	print("Use the stop script to terminate the execution.")
+
 	app = Flask(__name__)	#current module name
 	CORS(app)	#send Access-Control-Allow-Origin header
 
